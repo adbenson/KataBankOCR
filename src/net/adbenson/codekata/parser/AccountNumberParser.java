@@ -1,5 +1,7 @@
 package net.adbenson.codekata.parser;
 
+import java.util.List;
+
 import net.adbenson.codekata.common.Config;
 import net.adbenson.codekata.model.AccountNumber;
 import net.adbenson.codekata.model.Digit;
@@ -21,7 +23,7 @@ public class AccountNumberParser {
 	 * @param account
 	 * @return 
 	 */
-	public long parse(AccountNumber account) {
+	public AccountNumber parse(List<String> accountNumberLines) {
 		long number = 0;
 		
 		for(int i=0; i<Config.DIGITS_PER_NUMBER; i++) {
@@ -37,7 +39,7 @@ public class AccountNumberParser {
 		
 		return number;
 	}
-	
+
 	public void setDigitParser(DigitParser digitParser) {
 		this.digitParser = digitParser;		
 	}

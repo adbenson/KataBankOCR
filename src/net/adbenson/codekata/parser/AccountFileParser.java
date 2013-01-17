@@ -24,7 +24,7 @@ public class AccountFileParser {
 	 * @param list
 	 * @return
 	 */
-	public List<Long> parse(List<String> list) {
+	public List<AccountNumber> parse(List<String> accountFileLines) {
 		
 		List<Long> parsedNumbers = new ArrayList<Long>();
 		

@@ -22,7 +22,7 @@ public class DigitParser {
 	 * @param digit
 	 * @return the integer value of the given digit
 	 */
-	public int parse(Digit digit) {		
+	public Digit parse(List<String> digitLines) {		
 		return digitPatterns.get(digit.flatten());
 	}
 
