@@ -12,6 +12,16 @@ import net.adbenson.codekata.parser.AccountFileParser;
 import net.adbenson.codekata.parser.AccountNumberParser;
 import net.adbenson.codekata.parser.DigitParser;
 
+/**
+ * 
+ * @author Andrew D Benson
+ * 
+ * Code Kata - KataBankOCR
+ * User Story 1
+ * "You work for a bank, which has recently purchased an ingenious machine to assist in reading letters and faxes sent in by branch offices."
+ *
+ * This class and its main method take a command line file name, open it, and read it into the parser, then output the results.
+ */
 public class KataBankOCR {
 	
 	public static void main(String[] args) {
