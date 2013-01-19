@@ -12,22 +12,24 @@ import net.adbenson.codekata.common.Config;
  */
 public class AccountNumber {
 
-	private List<String> lines;
+	private List<Digit> digits;
+	
+	private long value;
 	
 	/**
 	 * Contructor takes a list argument, pulls the top set of rows and stores them in this object
 	 * @param list
 	 */
-	public AccountNumber(List<String> list) {
-		lines = new ArrayList<String>();
-		
-		for (int i=0; i<Config.LINES_PER_NUMBER; i++) {
-			lines.add(list.get(i));
-		}
+	public AccountNumber(List<Digit> digits, long value) {
+		this.digits = digits;
+		this.value = value;
 	}
 
-	public List<String> getLines() {
-		return lines;
+	public List<Digit> getDigits() {
+		return digits;
 	}
 
+	public long getValue() {
+		return value;
+	}
 }

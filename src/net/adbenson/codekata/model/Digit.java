@@ -20,14 +20,8 @@ public class Digit {
 	 * @param lines the Strings to pull the digit from
 	 * @param offset the 0-indexed digit number from the left
 	 */
-	public Digit(List<String> lines, int offset) {
-		offset *= Config.CHARACTERS_PER_DIGIT;
-		
-		rows = new ArrayList<String>();
-		for(String line : lines) {
-			String row = line.substring(offset, offset + Config.CHARACTERS_PER_DIGIT);
-			rows.add(row);
-		}
+	public Digit(List<String> rows, int value) {
+
 				
 	}
 	
@@ -45,6 +39,11 @@ public class Digit {
 
 	public Object getRows() {
 		return rows;
+	}
+
+	public int getValue() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
