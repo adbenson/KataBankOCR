@@ -13,6 +13,8 @@ import net.adbenson.codekata.common.Config;
 public class Digit {
 	
 	private List<String> rows;
+	
+	private int value;
 		
 	/**
 	 * This constructor takes a set of lines (representing an account number) 
@@ -21,8 +23,8 @@ public class Digit {
 	 * @param offset the 0-indexed digit number from the left
 	 */
 	public Digit(List<String> rows, int value) {
-
-				
+		this.rows = rows;
+		this.value = value;
 	}
 	
 	/**
@@ -42,8 +44,7 @@ public class Digit {
 	}
 
 	public int getValue() {
-		// TODO Auto-generated method stub
-		return 0;
+		return value;
 	}
 	
 }
