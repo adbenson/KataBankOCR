@@ -25,6 +25,16 @@ public class AccountFileProvider {
 		return lines;
 	}
 	
+	public static List<String> digitEight() {
+		List<String> lines = new ArrayList<String>();
+		
+		lines.add(" _ ");
+		lines.add("|_|");
+		lines.add("|_|");
+		
+		return lines;
+	}
+	
 	public static List<String> digitNine() {
 		List<String> lines = new ArrayList<String>();
 		
@@ -73,5 +83,4 @@ public class AccountFileProvider {
 		
 		return lines;
 	}
-
 }
