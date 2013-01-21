@@ -4,6 +4,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
+import net.adbenson.codekata.common.Config;
+
 /**
  * AccountNumber class models a "graphical" account number made up of multiple string lines
  * @author Andrew D Benson
@@ -35,5 +37,17 @@ public class AccountNumber {
 	public String toString() {
 		DecimalFormat format = new DecimalFormat( "000000000" );
 		return "Account Number: "+format.format(value);
+	}
+	
+	public boolean isValid() {
+		long sum = 0;
+		
+		for(int i=0; i<digits.size(); i++) {
+			int position = Config.DIGITS_PER_NUMBER - i;
+			sum += digits.get(i).getValue() * position;
+		}
+		
+		long mod = sum % 11;
+		return mod == 0;
 	}
 }
