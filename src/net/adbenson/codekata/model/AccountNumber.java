@@ -1,9 +1,8 @@
 package net.adbenson.codekata.model;
 
-import java.util.ArrayList;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
-
-import net.adbenson.codekata.common.Config;
 
 /**
  * AccountNumber class models a "graphical" account number made up of multiple string lines
@@ -31,5 +30,10 @@ public class AccountNumber {
 
 	public long getValue() {
 		return value;
+	}
+	
+	public String toString() {
+		DecimalFormat format = new DecimalFormat( "000000000" );
+		return "Account Number: "+format.format(value);
 	}
 }
