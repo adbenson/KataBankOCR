@@ -26,42 +26,49 @@ public class AccountFileParserTestCase {
 		numberParser = new MockAccountNumberParser();
 		
 		parser.setAccountNumberParser(numberParser);
+	}
+
+	@Test
+	public void testParse() {
 		
 		numberParser.setOutput(new AccountNumber[]{
 				new MockAccountNumber(AccountFileProvider.ASC_NUMBER), 
 				new MockAccountNumber(AccountFileProvider.DESC_NUMBER), 
 				new MockAccountNumber(AccountFileProvider.BINARY)
 		});
-	}
-
-	@Test
-	public void testParse() {
+		
 		List<AccountNumber> result = parser.parse(AccountFileProvider.accountNumbers(3));
 		
 		assertEquals(3, result.size());
 		
-		assertEquals(AccountFileProvider.ASC_NUMBER, result.get(0));
+		assertEquals(AccountFileProvider.ASC_NUMBER, result.get(0).getValue());
 		
-		assertEquals(AccountFileProvider.DESC_NUMBER, result.get(1));
+		assertEquals(AccountFileProvider.DESC_NUMBER, result.get(1).getValue());
 		
-		assertEquals(AccountFileProvider.BINARY, result.get(2));
+		assertEquals(AccountFileProvider.BINARY, result.get(2).getValue());
 	}
 	
 	@Test
 	public void testSeparateAccounts() {
-		
+
 		List<String> lines = new ArrayList<String>();
 		lines.addAll(AccountFileProvider.ascendingDigits());
+		lines.add(AccountFileProvider.blankLine());
 		lines.addAll(AccountFileProvider.binaryDigits());
+		lines.add(AccountFileProvider.blankLine());
 		lines.addAll(AccountFileProvider.ascendingDigits());
+		lines.add(AccountFileProvider.blankLine());
+		lines.addAll(AccountFileProvider.binaryDigits());
+		lines.add(AccountFileProvider.blankLine());
 		
 		List<List<String>> accts = parser.separateAccounts(lines);
 		
-		assertEquals(3, accts);
+		assertEquals(4, accts.size());
 		
 		assertEquals(AccountFileProvider.ascendingDigits(), accts.get(0));
 		assertEquals(AccountFileProvider.binaryDigits(), accts.get(1));
 		assertEquals(AccountFileProvider.ascendingDigits(), accts.get(2));
+		assertEquals(AccountFileProvider.binaryDigits(), accts.get(3));
 
 	}
 
