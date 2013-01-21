@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import net.adbenson.codekata.common.Config;
 import net.adbenson.codekata.model.AccountNumber;
 import net.adbenson.codekata.parser.AccountNumberParser;
 import net.adbenson.codekata.test.fixture.MockAccountNumber;
@@ -33,6 +34,7 @@ public class AccountNumberParserTestCase {
 		AccountNumber account = parser.parse(AccountFileProvider.ascendingDigits());
 				
 		assertEquals(AccountFileProvider.ASC_NUMBER, account.getValue());
+		assertEquals(Config.DIGITS_PER_NUMBER, account.getDigits().size());
 	}
 	
 	@Test
@@ -42,6 +44,7 @@ public class AccountNumberParserTestCase {
 		AccountNumber account = parser.parse(AccountFileProvider.binaryDigits());
 				
 		assertEquals(AccountFileProvider.BINARY, account.getValue());
+		assertEquals(Config.DIGITS_PER_NUMBER, account.getDigits().size());
 	}
 	
 	@Test
