@@ -2,9 +2,13 @@ package net.adbenson.codekata.test.model;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import net.adbenson.codekata.common.Config;
+import net.adbenson.codekata.model.AccountNumber;
 import net.adbenson.codekata.parser.AccountFileParser;
+import net.adbenson.codekata.test.fixture.MockAccountNumber;
 import net.adbenson.codekata.test.fixture.MockAccountNumberParser;
 import net.adbenson.codekata.test.provider.AccountFileProvider;
 
@@ -22,14 +26,17 @@ public class AccountFileParserTestCase {
 		numberParser = new MockAccountNumberParser();
 		
 		parser.setAccountNumberParser(numberParser);
+		
+		numberParser.setOutput(new AccountNumber[]{
+				new MockAccountNumber(AccountFileProvider.ASC_NUMBER), 
+				new MockAccountNumber(AccountFileProvider.DESC_NUMBER), 
+				new MockAccountNumber(AccountFileProvider.BINARY)
+		});
 	}
 
 	@Test
 	public void testParse() {
-		numberParser.setOutput(new long[]{
-				AccountFileProvider.ASC_NUMBER, AccountFileProvider.DESC_NUMBER, AccountFileProvider.BINARY});
-		
-		List<Long> result = parser.parse(AccountFileProvider.accountNumbers(3));
+		List<AccountNumber> result = parser.parse(AccountFileProvider.accountNumbers(3));
 		
 		assertEquals(3, result.size());
 		
@@ -41,19 +48,21 @@ public class AccountFileParserTestCase {
 	}
 	
 	@Test
-	public void testParseUneven() {
-		numberParser.setOutput(new long[]{AccountFileProvider.ASC_NUMBER, AccountFileProvider.ASC_NUMBER});
+	public void testSeparateAccounts() {
 		
-		List<String> lines = AccountFileProvider.accountNumbers(2);
-		lines.add(AccountFileProvider.blankLine());
+		List<String> lines = new ArrayList<String>();
+		lines.addAll(AccountFileProvider.ascendingDigits());
+		lines.addAll(AccountFileProvider.binaryDigits());
+		lines.addAll(AccountFileProvider.ascendingDigits());
 		
-		List<Long> result = parser.parse(lines);
+		List<List<String>> accts = parser.separateAccounts(lines);
 		
-		assertEquals(2, result.size());
+		assertEquals(3, accts);
 		
-		assertEquals(AccountFileProvider.ASC_NUMBER, result.get(0));
-		
-		assertEquals(AccountFileProvider.ASC_NUMBER, result.get(1));
+		assertEquals(AccountFileProvider.ascendingDigits(), accts.get(0));
+		assertEquals(AccountFileProvider.binaryDigits(), accts.get(1));
+		assertEquals(AccountFileProvider.ascendingDigits(), accts.get(2));
+
 	}
 
 }
