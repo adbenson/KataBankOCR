@@ -16,11 +16,9 @@ public class DigitParserTestCase {
 	
 	private static final String test1 = "TEST1";
 	private static final String test2 = "!@(*&#";
-	private static final String test3 = "";
 	
 	private DigitParser parser;
 	private HashMap<String, Integer> patterns;
-	private MockDigit digit;
 
 	@Before
 	public void setUp() {
@@ -42,10 +40,8 @@ public class DigitParserTestCase {
 	public void testMulti() {
 		patterns.put(test1, 5);
 		patterns.put(AccountFileProvider.FLAT_EIGHT, 7);
-		patterns.put(test3, 3);
-		
-		digit.setFlat(test2);
-		
+		patterns.put(test2, 3);
+				
 		Digit digit = parser.parse(AccountFileProvider.digitEight());
 		
 		assertEquals(7, digit.getValue());
