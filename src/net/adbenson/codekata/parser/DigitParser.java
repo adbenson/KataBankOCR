@@ -24,9 +24,11 @@ public class DigitParser {
 	 * @return the Digit corresponding to the given symbol
 	 */
 	public Digit parse(List<String> digitLines) {
+		String flat = flatten(digitLines);
+		int value = digitPatterns.get(flat);
 		
-		Digit digit = new Digit(digitLines);
-		return digitPatterns.get(digit.flatten());
+		Digit digit = new Digit(digitLines, value);
+		return digit;
 	}
 
 	public void setDigitPatterns(HashMap<String, Integer> digitPatterns) {
