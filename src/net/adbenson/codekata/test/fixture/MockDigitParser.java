@@ -1,15 +1,19 @@
 package net.adbenson.codekata.test.fixture;
 
+import java.util.List;
+
 import net.adbenson.codekata.model.Digit;
 import net.adbenson.codekata.parser.DigitParser;
-import net.adbenson.codekata.test.provider.AccountFileProvider;
 
 public class MockDigitParser extends DigitParser {
 	
-	int i = 1;
+	public int[] digits;
+	int index = 0;
 	
-	public int parse(Digit digit) {
-		return i++;
+	public Digit parse(List<String> rows) {
+		Digit digit = new MockDigit(digits[index++]);
+		
+		return digit;
 	}
 
 }

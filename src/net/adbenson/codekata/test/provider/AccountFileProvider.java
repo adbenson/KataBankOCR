@@ -13,7 +13,11 @@ public class AccountFileProvider {
 	
 	public static final long BINARY = 100000001l;
 	
-	public static final String FLAT_EIGHT = " _ |_||_|";	 
+	public static final String FLAT_EIGHT = " _ |_||_|";
+
+	public static final int[] ASC_DIGITS = new int[] {1,2,3,4,5,6,7,8,9};
+	
+	public static final int[] BINARY_DIGITS = new int[] {1,0,0,0,0,0,0,0,1};	
 	
 	public static List<String> digitOne() {
 		List<String> lines = new ArrayList<String>();
@@ -91,6 +95,16 @@ public class AccountFileProvider {
 			lines.add(blankLine());
 		}
 		
+		return lines;
+	}
+
+	public static Object digitZero() {
+		List<String> lines = new ArrayList<String>();
+
+		lines.add(" _ ");
+		lines.add("| |");
+		lines.add("|_|");
+
 		return lines;
 	}
 }

@@ -1,8 +1,6 @@
 package net.adbenson.codekata.test.model;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +8,6 @@ import java.util.List;
 import net.adbenson.codekata.model.AccountNumber;
 import net.adbenson.codekata.model.Digit;
 import net.adbenson.codekata.test.fixture.MockDigit;
-import net.adbenson.codekata.test.provider.AccountFileProvider;
 
 import org.junit.Before;
 import org.junit.Test;

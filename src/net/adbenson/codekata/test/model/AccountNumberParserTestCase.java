@@ -1,6 +1,9 @@
 package net.adbenson.codekata.test.model;
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
 import net.adbenson.codekata.model.AccountNumber;
 import net.adbenson.codekata.parser.AccountNumberParser;
 import net.adbenson.codekata.test.fixture.MockAccountNumber;
@@ -14,21 +17,19 @@ public class AccountNumberParserTestCase {
 	
 	private AccountNumberParser parser;
 	private MockDigitParser digitParser;
-	private MockAccountNumber mockNumber;
-	
+		
 	@Before
 	public void setUp() {
 		parser = new AccountNumberParser();
 		digitParser = new MockDigitParser();
 		
 		parser.setDigitParser(digitParser);
-		
-		mockNumber = new MockAccountNumber();
 	}
 
 	@Test
 	public void testAsc() {
-				
+		digitParser.digits = AccountFileProvider.ASC_DIGITS;
+		
 		AccountNumber account = parser.parse(AccountFileProvider.ascendingDigits());
 				
 		assertEquals(AccountFileProvider.ASC_NUMBER, account.getValue());
@@ -36,10 +37,39 @@ public class AccountNumberParserTestCase {
 	
 	@Test
 	public void testBinary() {
+		digitParser.digits = AccountFileProvider.BINARY_DIGITS;
 				
 		AccountNumber account = parser.parse(AccountFileProvider.binaryDigits());
 				
 		assertEquals(AccountFileProvider.BINARY, account.getValue());
+	}
+	
+	@Test
+	public void testSeparateOne() {
+	
+		List<String> rows = parser.separateDigits(AccountFileProvider.ascendingDigits(), 0);
+			
+		assertEquals(AccountFileProvider.digitOne(), rows);
+	}
+	
+	@Test
+	public void testSeparateEight() {
+	
+		List<String> rows = parser.separateDigits(AccountFileProvider.ascendingDigits(), 7);
+			
+		assertEquals(AccountFileProvider.digitEight(), rows);
+	}
+	
+	@Test
+	public void testSeparateZero() {
+	
+		List<String> rows = parser.separateDigits(AccountFileProvider.binaryDigits(), 0);
+			
+		assertEquals(AccountFileProvider.digitOne(), rows);
+		
+		rows = parser.separateDigits(AccountFileProvider.binaryDigits(), 1);
+		
+		assertEquals(AccountFileProvider.digitZero(), rows);
 	}
 
 }

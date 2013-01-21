@@ -8,10 +8,14 @@ public class MockDigit extends Digit {
 	
 	private String flat;
 	
-	public MockDigit() {
-		super(new ArrayList<String>(), 0);
+	public MockDigit(int val) {
+		super(new ArrayList<String>(), val);
 	}
 	
+	public MockDigit() {
+		this(-1);
+	}
+
 	public String flatten() {
 		return flat;
 	}
