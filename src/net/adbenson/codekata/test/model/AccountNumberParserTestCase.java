@@ -1,6 +1,7 @@
 package net.adbenson.codekata.test.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import net.adbenson.codekata.model.AccountNumber;
 import net.adbenson.codekata.parser.AccountNumberParser;
 import net.adbenson.codekata.test.fixture.MockAccountNumber;
 import net.adbenson.codekata.test.fixture.MockDigitParser;
@@ -26,10 +27,19 @@ public class AccountNumberParserTestCase {
 	}
 
 	@Test
-	public void test() {
-		Long result = parser.parse(mockNumber);
-		
-		assertEquals(AccountFileProvider.ASC_NUMBER, result);
+	public void testAsc() {
+				
+		AccountNumber account = parser.parse(AccountFileProvider.ascendingDigits());
+				
+		assertEquals(AccountFileProvider.ASC_NUMBER, account.getValue());
+	}
+	
+	@Test
+	public void testBinary() {
+				
+		AccountNumber account = parser.parse(AccountFileProvider.binaryDigits());
+				
+		assertEquals(AccountFileProvider.BINARY, account.getValue());
 	}
 
 }

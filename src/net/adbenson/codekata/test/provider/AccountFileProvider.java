@@ -7,11 +7,11 @@ import net.adbenson.codekata.common.Config;
 
 public class AccountFileProvider {
 		
-	public static final Long ASC_NUMBER = 123456789l;
+	public static final long ASC_NUMBER = 123456789l;
 	
-	public static final Long DESC_NUMBER = 987654321l;
+	public static final long DESC_NUMBER = 987654321l;
 	
-	public static final Long BINARY = 100000001l;
+	public static final long BINARY = 100000001l;
 	
 	public static final String FLAT_EIGHT = " _ |_||_|";	 
 	
@@ -69,6 +69,16 @@ public class AccountFileProvider {
 		lines.add("    _  _     _  _  _  _  _ ");
 		lines.add("  | _| _||_||_ |_   ||_||_|");
 		lines.add("  ||_  _|  | _||_|  ||_| _|");
+		
+		return lines;
+	}
+	
+	public static List<String> binaryDigits() {
+		List<String> lines = new ArrayList<String>();
+		
+		lines.add("    _  _  _  _  _  _  _    ");
+		lines.add("  || || || || || || || |  |");
+		lines.add("  ||_||_||_||_||_||_||_|  |");
 		
 		return lines;
 	}
