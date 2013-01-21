@@ -1,18 +1,19 @@
 package net.adbenson.codekata.test.fixture;
 
-import java.util.List;
-
 import net.adbenson.codekata.model.AccountNumber;
-import net.adbenson.codekata.test.provider.AccountFileProvider;
 
 public class MockAccountNumber extends AccountNumber {
 	
-	public MockAccountNumber() {
-		super(AccountFileProvider.blankDigits());
+	public long value;
+	
+	public MockAccountNumber(long value) {
+		super(null, 0);
+		this.value = value;
 	}
 
-	public List<String> getLines() {
-		return AccountFileProvider.ascendingDigits();
+	@Override
+	public long getValue() {
+		return value;
 	}
 	
 }
