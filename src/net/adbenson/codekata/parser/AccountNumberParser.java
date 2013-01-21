@@ -1,5 +1,6 @@
 package net.adbenson.codekata.parser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.adbenson.codekata.common.Config;
@@ -24,20 +25,37 @@ public class AccountNumberParser {
 	 * @return 
 	 */
 	public AccountNumber parse(List<String> accountNumberLines) {
+		List<Digit> digits = new ArrayList<Digit>();
+		
 		long number = 0;
 		
 		for(int i=0; i<Config.DIGITS_PER_NUMBER; i++) {
+					
 			//Find the digit value
-			Digit digit = new Digit(account.getLines(), i);
-			int digitValue = digitParser.parse(digit);
+			List<String> rows = separateDigits(accountNumberLines, i);
+			Digit digit = digitParser.parse(rows);
 			
 			//Left-shift it to find the actual value
 			//The value of the digit increases L-R but we read R-L, so invert the index
 			int power = Config.DIGITS_PER_NUMBER - i - 1;
-			number += digitValue * Math.round(Math.pow(10, power));
+			number += digit.getValue() * Math.round(Math.pow(10, power));
 		}
 		
-		return number;
+		AccountNumber account = new AccountNumber(digits, number);
+		return account;
+	}
+	
+	public List<String> separateDigits(List<String> lines, int offset) {
+		offset *= Config.CHARACTERS_PER_DIGIT;
+
+		List<String> rows = new ArrayList<String>();
+		for (String line : lines) {
+			String row = line.substring(offset, offset
+					+ Config.CHARACTERS_PER_DIGIT);
+			rows.add(row);
+		}
+		
+		return rows;
 	}
 
 	public void setDigitParser(DigitParser digitParser) {
