@@ -39,6 +39,7 @@ public class AccountNumberParser {
 			//The value of the digit increases L-R but we read R-L, so invert the index
 			int power = Config.DIGITS_PER_NUMBER - i - 1;
 			number += digit.getValue() * Math.round(Math.pow(10, power));
+			digits.add(digit);
 		}
 		
 		AccountNumber account = new AccountNumber(digits, number);
