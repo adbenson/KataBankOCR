@@ -24,12 +24,5 @@ public class DigitTestCase {
 		assertEquals(AccountFileProvider.digitNine(), digit.getRows());
 		assertEquals(9, digit.getValue());
 	}
-	
-	@Test
-	public void testFlattenEight() {
-		Digit digit = new Digit(AccountFileProvider.digitEight(), 0);
-		
-		assertEquals(AccountFileProvider.FLAT_EIGHT, digit.flatten());
-	}
 
 }
