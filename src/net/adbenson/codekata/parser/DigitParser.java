@@ -1,6 +1,7 @@
 package net.adbenson.codekata.parser;
 
 import java.util.HashMap;
+import java.util.List;
 
 import net.adbenson.codekata.model.Digit;
 
@@ -20,7 +21,7 @@ public class DigitParser {
 	/**
 	 * Takes a "graphical" digit and returns its mathematical value
 	 * @param digit
-	 * @return the integer value of the given digit
+	 * @return the Digit corresponding to the given symbol
 	 */
 	public Digit parse(List<String> digitLines) {		
 		return digitPatterns.get(digit.flatten());

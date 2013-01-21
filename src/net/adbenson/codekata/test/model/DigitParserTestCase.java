@@ -4,8 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
 
+import net.adbenson.codekata.model.Digit;
 import net.adbenson.codekata.parser.DigitParser;
 import net.adbenson.codekata.test.fixture.MockDigit;
+import net.adbenson.codekata.test.provider.AccountFileProvider;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,30 +27,28 @@ public class DigitParserTestCase {
 		parser = new DigitParser();
 		patterns = new HashMap<String, Integer>();
 		parser.setDigitPatterns(patterns);
-		digit = new MockDigit();
 	}
 	
 	@Test
 	public void test() {
-		patterns.put(test1, 5);
-		digit.setFlat(test1);
+		patterns.put(AccountFileProvider.FLAT_EIGHT, 8);
 		
-		int value = parser.parse(digit);
+		Digit digit = parser.parse(AccountFileProvider.digitEight());
 		
-		assertEquals(5, value);
+		assertEquals(8, digit.getValue());
 	}
 	
 	@Test
 	public void testMulti() {
 		patterns.put(test1, 5);
-		patterns.put(test2, 7);
+		patterns.put(AccountFileProvider.FLAT_EIGHT, 7);
 		patterns.put(test3, 3);
 		
 		digit.setFlat(test2);
 		
-		int value = parser.parse(digit);
+		Digit digit = parser.parse(AccountFileProvider.digitEight());
 		
-		assertEquals(7, value);
+		assertEquals(7, digit.getValue());
 	}
 
 }
