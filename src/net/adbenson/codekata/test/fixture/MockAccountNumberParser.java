@@ -1,18 +1,21 @@
 package net.adbenson.codekata.test.fixture;
 
+import java.util.List;
+
 import net.adbenson.codekata.model.AccountNumber;
 import net.adbenson.codekata.parser.AccountNumberParser;
 
 public class MockAccountNumberParser extends AccountNumberParser {
 	
-	long[] results;
+	AccountNumber[] results;
 	int pointer = 0;
 
-	public void setOutput(long[] ls) {
+	public void setOutput(AccountNumber[] ls) {
 		results = ls;
 	}
 	
-	public long parse(AccountNumber n) {
+	@Override
+	public AccountNumber parse(List<String> list) {
 		return results[pointer++];
 	}
 

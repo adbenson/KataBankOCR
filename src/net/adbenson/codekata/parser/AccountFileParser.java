@@ -26,27 +26,27 @@ public class AccountFileParser {
 	 */
 	public List<AccountNumber> parse(List<String> accountFileLines) {
 		
-		List<Long> parsedNumbers = new ArrayList<Long>();
+		List<AccountNumber> parsedAccounts = new ArrayList<AccountNumber>();
 		
-		List<AccountNumber> accounts = separateAccounts(list);
+		List<List<String>> accounts = separateAccounts(accountFileLines);
 		
-		for (AccountNumber account : accounts) {
-			parsedNumbers.add(accountNumberParser.parse(account));
+		for (List<String> account : accounts) {
+			parsedAccounts.add(accountNumberParser.parse(account));
 		}
 		
-		return parsedNumbers;
+		return parsedAccounts;
 	}
 
-	private List<AccountNumber> separateAccounts(List<String> list) {
+	public List<List<String>> separateAccounts(List<String> list) {
 		
-		List<AccountNumber> accounts = new ArrayList<AccountNumber>();
-		accounts.add(new AccountNumber(list));
-		
-		//Remove the lines already parsed into an account number
-		list.subList(0, Config.LINES_PER_NUMBER + 1).clear();
+		List<List<String>> accounts = new ArrayList<List<String>>();
+
+		if (list.size() >= Config.LINES_PER_NUMBER + 1) {
+			List<String> subList = new ArrayList<String>(list.subList(0, Config.LINES_PER_NUMBER));
+			accounts.add(new ArrayList<String>(subList));
 			
-		if (list.size() >= Config.LINES_PER_NUMBER) {
-			accounts.addAll(separateAccounts(list));
+			List<String> remaining = list.subList(Config.LINES_PER_NUMBER + 1, list.size());
+			accounts.addAll(separateAccounts(remaining));
 		}
 		
 		return accounts;
