@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 import net.adbenson.codekata.common.Config;
+import net.adbenson.codekata.model.AccountNumber;
 import net.adbenson.codekata.parser.AccountFileParser;
 import net.adbenson.codekata.parser.AccountNumberParser;
 import net.adbenson.codekata.parser.DigitParser;
@@ -38,7 +39,7 @@ public class KataBankOCR {
 		try {
 			List<String> lines = Files.readAllLines(path, Charset.defaultCharset());
 			
-			List<Long> accounts = fileParser.parse(lines);
+			List<AccountNumber> accounts = fileParser.parse(lines);
 			
 			System.out.println(accounts);
 			
