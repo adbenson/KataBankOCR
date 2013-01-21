@@ -41,7 +41,10 @@ public class KataBankOCR {
 			
 			List<AccountNumber> accounts = fileParser.parse(lines);
 			
-			System.out.println(accounts);
+			for(AccountNumber acct : accounts) {
+				System.out.print(acct.toString());
+				System.out.println(acct.isValid()? "" : " ERR");
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
